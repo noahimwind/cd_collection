@@ -53,4 +53,8 @@ public class CD {
     public int compareTitle(CD a){
         return this.getTitle().compareTo(a.getTitle());
     }
+    public int compareArtist(CD a){
+        return this.getArtist().compareTo(a.getArtist());
+    }
+
 }
