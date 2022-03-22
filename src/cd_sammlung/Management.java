@@ -1,11 +1,33 @@
 package cd_sammlung;
 
+import java.io.*;
 import java.util.ArrayList;
 
 public class Management {
     //  Array List
     private ArrayList<CD> cdCollectionArrayList;
     private int pointer;
+
+    //  File Management
+    File file1 = new File("cds.txt");
+
+
+    private void createDataBase(String path) throws IOException {
+        File file = new File(path);
+        file.createNewFile();
+        System.out.println("File created on: " + file.getAbsolutePath());
+    }
+
+    private String validatePathInput(String path){
+        String sub = path.substring(path.length() -4);
+        if (!sub.equals(".cbu")) path += ".cbu";
+        return path;
+    }
+
+    private void loadDatabase(String path) throws FileNotFoundException {
+        path = validatePathInput(path);
+        BufferedReader inStream = new BufferedReader(new FileReader(path));
+    }
 
     public Management(){
         cdCollectionArrayList = new ArrayList<>();
