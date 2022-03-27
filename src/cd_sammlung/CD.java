@@ -5,17 +5,20 @@ public class CD {
     String artist;
     String title;
     int duration;
+    int number_tracks;
 
     //  Konstruktoren
     public CD(){
         this.artist = "artist 01";
         this.title = "title 01";
         this.duration = 0;
+        this.number_tracks = 0;
     }
-    public CD(String artist, String title, int duration){
+    public CD(String artist, String title, int duration, int number_tracks){
         this.artist = artist;
         this.title = title;
         this.duration = duration;
+        this.number_tracks = number_tracks;
     }
 
     //  Getter und Setter
@@ -43,10 +46,18 @@ public class CD {
         this.duration = duration;
     }
 
+    public int getNumber_tracks() {
+        return number_tracks;
+    }
+
+    public void setNumber_tracks(int number_tracks) {
+        this.number_tracks = number_tracks;
+    }
+
     //  toString
     @Override
     public String toString() {
-        return "CD: {" + this.getArtist() + "; " + this.getTitle() + "; " + this.getDuration() + "}";
+        return this.getArtist() + "; " + this.getTitle() + "; " + this.getDuration() + "; " + this.getNumber_tracks();
     }
 
     //  lexikalischer Vergleich

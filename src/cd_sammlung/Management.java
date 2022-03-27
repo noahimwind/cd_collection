@@ -7,26 +7,41 @@ public class Management {
     //  Array List
     private ArrayList<CD> cdCollectionArrayList;
     private int pointer;
+    File file1 = new File("C:\\Users\\Noah\\Documents\\SWD_CD\\file1.txt");
 
-    //  File Management
-    File file1 = new File("cds.txt");
-
-
-    private void createDataBase(String path) throws IOException {
-        File file = new File(path);
-        file.createNewFile();
-        System.out.println("File created on: " + file.getAbsolutePath());
+    public void schreibeBinaer(String x) throws IOException {
+        String y = this.leseBinaer();
+        DataOutputStream dos = new DataOutputStream(new FileOutputStream(file1));
+        y += x + "\n";
+        dos.writeBytes(y);
     }
 
-    private String validatePathInput(String path){
-        String sub = path.substring(path.length() -4);
-        if (!sub.equals(".cbu")) path += ".cbu";
-        return path;
+    public void schreibebinaercdDatenbank() throws IOException {
+        for ( CD cd : cdCollectionArrayList) {
+            schreibeBinaer(cd.toString());
+        }
     }
 
-    private void loadDatabase(String path) throws FileNotFoundException {
-        path = validatePathInput(path);
-        BufferedReader inStream = new BufferedReader(new FileReader(path));
+    public void leseBinaercdDatenbank() throws IOException {
+        String[] a = this.leseBinaer().split("\n");
+        for (String cd: a) {
+            String[] b = cd.split("; ");
+            System.out.println(cd);
+            var x = new CD(b[0], b[1], Integer.parseInt(b[2]), Integer.parseInt(b[3]));
+            this.Add(x);
+            System.out.println(x);
+        }
+    }
+
+    public String leseBinaer() throws IOException {
+        DataInputStream dis = new DataInputStream(new FileInputStream(file1));
+        int x = 0;
+        String y = "";
+        do {
+            x = dis.read();
+            y += (char)x;
+        }while (x != -1);
+        return y.substring(0, y.length() -1);
     }
 
     public Management(){
@@ -43,7 +58,7 @@ public class Management {
     @Override
     public String toString() {
         String collectionList = "";
-        for (int i = 0; i < this.cdCollectionArrayList.size() -1; i++){
+        for (int i = 0; i < this.cdCollectionArrayList.size() ; i++){
             collectionList += this.cdCollectionArrayList.get(i).getTitle() + "; ";
         }
         return collectionList;
