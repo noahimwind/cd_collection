@@ -3,7 +3,7 @@ package cd_sammlung;
 public class Main {
 
     public static void main(String[] args) {
-        //  CD Klasse ausprobieren
+        //  CDs erstellen
         CD a = new CD("Leoniden", "Complex Happenings", 30);
         CD b = new CD("die Aerzte", "Jazz", 40);
         CD c = new CD("Faber", "Alles Gute", 20);
@@ -23,5 +23,6 @@ public class Main {
         System.out.println(x.Next());
         System.out.println(x.First());
         System.out.println(x.Next());
+
     }
 }
